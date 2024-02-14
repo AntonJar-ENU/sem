@@ -2,7 +2,6 @@ package com.napier.sem;
 
 import java.sql.*;
 
-
 public class App
 {
 
@@ -80,8 +79,6 @@ public class App
         // Disconnect from database
         a.disconnect();
     }
-
-
 
     /**
      * Connect to the MySQL database.
