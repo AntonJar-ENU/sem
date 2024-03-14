@@ -15,8 +15,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Unit tests
-        run: mvn -Dtest=com.napier.sem.Apptest test
+      - name: Unit Tests
+        run: mvn -Dtest=com.napier.sem.AppTest test
 
   build:
     name: Build and Start Using docker-compose
