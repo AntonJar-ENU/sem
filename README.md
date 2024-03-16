@@ -9,3 +9,5 @@ License: [![LICENSE](https://img.shields.io/github/license/AntonJar-ENU/sem.svg?
 
 Release: [![Releases](https://img.shields.io/github/release/AntonJar-ENU/sem/all.svg?style=flat-square)](https://github.com/AntonJar-ENU/sem/releases)
 
+Code Coverage: [![codecov](https://codecov.io/gh/AntonJar-ENU/sem/graph/badge.svg?token=R29V7QYUM9)](https://codecov.io/gh/AntonJar-ENU/sem)
+
