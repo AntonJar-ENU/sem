@@ -191,21 +191,6 @@ public class App {
         return new ArrayList<Employee>();
     }
 
-
-    /**
-     * Disconnect from the MySQL database.
-     */
-    public void disconnect() {
-        if (con != null) {
-            try {
-                // Close connection
-                con.close();
-            } catch (Exception e) {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
-
     public Department getDepartment(String dept_no){
         try {
             // Create an SQL statement
@@ -269,5 +254,21 @@ public class App {
                             + "Manager: " + emp.manager + "\n");
         }
     }
+
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect() {
+        if (con != null) {
+            try {
+                // Close connection
+                con.close();
+            } catch (Exception e) {
+                System.out.println("Error closing connection to database");
+            }
+        }
+    }
+
+
 
 }
