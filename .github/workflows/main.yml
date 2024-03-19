@@ -46,14 +46,10 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v4.0.1
         with:
-        # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           directory: ./target/site/jacoco
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           slug: AntonJar-ENU/sem
 
   build:
