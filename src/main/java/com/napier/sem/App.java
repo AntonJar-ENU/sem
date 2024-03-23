@@ -23,15 +23,11 @@ public class App {
         }
 
         int retries = 10;
-        boolean shouldWait = false;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
-                if (shouldWait) {
-                    // Wait a bit for db to start
-                    Thread.sleep(delay);
-                }
-
+                // Wait a bit for db to start
+                Thread.sleep(delay);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://" + location
                                 + "/employees?allowPublicKeyRetrieval=true&useSSL=false",
@@ -39,11 +35,8 @@ public class App {
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + i);
+                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
                 System.out.println(sqle.getMessage());
-
-                // Let's wait before attempting to reconnect
-                shouldWait = true;
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
@@ -51,21 +44,33 @@ public class App {
     }
 
     public static void main(String[] args) {
-        // Create new Application and connect to database
+        // Create new Application and connect to Database
         App a = new App();
 
-        if (args.length < 1) {
-            a.connect("localhost:33060", 30000);
-        } else {
+        // Connect to database
+        if(args.length < 1){
+            a.connect("localhost:33060", 0);
+        }else{
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        // Extract employee salary information
+        //ArrayList<Employee> employees = a.getAllSalaries();
+
+        // Test the size of the returned data - should be 240124
+        //System.out.println(employees.size());
+
+        // Print employee salaries
+        //a.printSalaries(employees);
+
+        // Get Salary by Department
         Department dept = a.getDepartment("Development");
         ArrayList<Employee> employees = a.getSalariesByDepartment(dept);
 
-
         // Print salary report
         a.printSalaries(employees);
+
+        //a.displayDepartment(dept);
 
         // Disconnect from database
         a.disconnect();
@@ -139,9 +144,9 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT emp_no, first_name, last_name "
-                            + "FROM employees "
-                            + "WHERE emp_no = " + ID;
+                    "SELECT e.emp_no, e.first_name, e.last_name "
+                            + "FROM employees AS e "
+                            + "WHERE e.emp_no = " + ID;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -277,5 +282,7 @@ public class App {
             }
         }
     }
+
+
 
 }
