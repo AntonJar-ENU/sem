@@ -49,7 +49,7 @@ public class App {
 
         // Connect to database
         if(args.length < 1){
-            a.connect("localhost:33060", 0);
+            a.connect("localhost:33060", 30000);
         }else{
             a.connect(args[0], Integer.parseInt(args[1]));
         }
