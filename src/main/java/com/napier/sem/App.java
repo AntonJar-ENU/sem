@@ -55,7 +55,7 @@ public class App {
         App a = new App();
 
         if (args.length < 1) {
-            a.connect("localhost:33060", 10000);
+            a.connect("localhost:33060", 30000);
         } else {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
